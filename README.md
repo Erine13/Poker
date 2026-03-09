@@ -30,8 +30,8 @@ public static carte tirage()
 Pour cela une valeur aléatoire entre 0 et 12 sera prise et correspondra à la valeur de la carte présent dans ce tableau 
 
 -> public static char[] valeurs = { 'A', 'R', 'D', 'V', 'X', '9', '8', '7', '6', '5', '4', '3', '2' };
-Même principe pour la famille sauf qu'ici c'est de 0 à 3, correspondant à coeur, carreau, trèfle et pique.
 
+Même principe pour la famille sauf qu'ici c'est de 0 à 3, correspondant à coeur, carreau, trèfle et pique.
 -> public static char[] familles = { '\u2665', '\u2666', '\u2663', '\u2660' };
 
 
