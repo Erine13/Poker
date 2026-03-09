@@ -25,7 +25,8 @@ public static carte tirage()
 
        return carte_tire;
 
-   }```
+   }
+```
 
 
 
