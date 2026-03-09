@@ -10,7 +10,9 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
 
 ### 1- Tirage cartes
 
-   `public static carte tirage()
+Pour la fonction du tirage de cartes : private static carte tirage() 
+
+   ```public static carte tirage()
    {
        carte carte_tire;
        Random random = new Random();
@@ -19,16 +21,12 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
        carte_tire.valeur = valeurs[v]; //La valeur de la carte prends la valeur tiré (noté v) dans la tableau valeurs 
        carte_tire.famille = familles[f]; //La famille prend la famille tiré (noté f) dans le tableau familles
 
-       //char mava = valeurs[0];
-       //char fami = familles[0];
-       //ex : cartes.valeur = 'A';
-       //ex : cartes.famille = '\u2665';
 
        return carte_tire;
 
-   }`
+   }```
 
-private static carte tirage() 
+
 
 Cette fonction sert à genéré aléatoirement une carte que ce soit pour sa valeur ou pour sa famille.
 
