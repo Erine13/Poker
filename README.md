@@ -10,7 +10,7 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
 
 ### 1- Tirage cartes
 
-   'public static carte tirage()
+   `public static carte tirage()
    {
        carte carte_tire;
        Random random = new Random();
@@ -26,7 +26,7 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
 
        return carte_tire;
 
-   }'
+   }`
 
 private static carte tirage() 
 
