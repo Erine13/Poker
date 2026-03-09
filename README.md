@@ -12,7 +12,8 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
 
 Pour la fonction du tirage de cartes : private static carte tirage() 
 
-   ```public static carte tirage()
+   ```C#
+public static carte tirage()
    {
        carte carte_tire;
        Random random = new Random();
