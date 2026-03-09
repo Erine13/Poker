@@ -10,7 +10,7 @@ où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que ch
 
 ### 1- Tirage cartes
 
-Pour la fonction du tirage de cartes : private static carte tirage() 
+Cette fonction du tirage de cartes (private static carte tirage()) permet de tirer aléatoirement une carte du jeu avec une valeur et une famille.
 
    ```C#
 public static carte tirage()
@@ -27,12 +27,11 @@ public static carte tirage()
 
    }
 ```
+Pour cela une valeur aléatoire entre 0 et 12 sera prise et correspondra à la valeur de la carte présent dans ce tableau 
+-> public static char[] valeurs = { 'A', 'R', 'D', 'V', 'X', '9', '8', '7', '6', '5', '4', '3', '2' };
+Même principe pour la famille sauf qu'ici c'est de 0 à 3, correspondant à coeur, carreau, trèfle et pique.
+-> public static char[] familles = { '\u2665', '\u2666', '\u2663', '\u2660' };
 
-
-
-Cette fonction sert à genéré aléatoirement une carte que ce soit pour sa valeur ou pour sa famille.
-
-<img width="1098" height="293" alt="image" src="https://github.com/user-attachments/assets/0d0b234f-a15e-43a7-b4ee-d06b2c25a5cc" />
 
 ### 2 - private static bool carteUnique(carte uneCarte, carte[] unJeu, int numero)
 
