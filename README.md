@@ -32,12 +32,36 @@ Pour cela une valeur aléatoire entre 0 et 12 sera prise et correspondra à la v
 -> public static char[] valeurs = { 'A', 'R', 'D', 'V', 'X', '9', '8', '7', '6', '5', '4', '3', '2' };
 
 Même principe pour la famille sauf qu'ici c'est de 0 à 3, correspondant à coeur, carreau, trèfle et pique.
+
 -> public static char[] familles = { '\u2665', '\u2666', '\u2663', '\u2660' };
 
 
-### 2 - private static bool carteUnique(carte uneCarte, carte[] unJeu, int numero)
+### 2 - Carte unique 
 
-Cette fonction indique si une carte est déjà présente dans le jeu 
+Cette fonction (private static bool carteUnique(carte uneCarte, carte[] unJeu, int numero)) empêche d'avoir plusieurs fois la même carte dans notre main, elle vérifie si une carte existe déjà.
+
+
+   ```C#
+public static bool carteUnique(carte uneCarte, carte[] unJeu, int numero) 
+{
+    for (int i = 0; i < 5; i++) //boucle qui parcoure la main de 5 cartes 
+    {
+
+        if (i == numero) continue; //Numéro est le numéro de la carte parmi les 5 cartes de la main. Si on arrive à la position (numéro) de la carte qu'on vérifie, on passe à la suivante. Comparer la carte avec elle même donnerai un doublon.
+        {
+            if (uneCarte.valeur == unJeu[i].valeur && uneCarte.famille == unJeu[i].famille)
+            {
+                return false; //Si false la carte est unique 
+            }
+        
+
+        }
+               
+    }
+    return true; //Si true la carte existe déjà
+}
+```
+
 
 ### 3 - private static void tirageDuJeu(carte[] unJeu)
 
