@@ -7,7 +7,28 @@ Le poker est un jeu !!! A revoir pour règle poker
 où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que chaque carte est unique, et ensuite, l’utilisateur aura la possibilité, soit de conserver son jeu, soit d’échanger aux plus quatre cartes, et obtenir ainsi une nouvelle main
 
 ## Fonctions à compléter ##
-### 1- private static carte tirage() 
+
+### 1- Tirage cartes
+
+   'public static carte tirage()
+   {
+       carte carte_tire;
+       Random random = new Random();
+       int v = random.Next(0, 13); //Prend une valeur aléatoire entre 0 et 12, correspondant à une valeur de carte présent dans la tableau 0 = A
+       int f = random.Next(0, 4); //Prend une valeur aléatoire entre 0 et 3, correspondant à une famille (coeur,pique...)
+       carte_tire.valeur = valeurs[v]; //La valeur de la carte prends la valeur tiré (noté v) dans la tableau valeurs 
+       carte_tire.famille = familles[f]; //La famille prend la famille tiré (noté f) dans le tableau familles
+
+       //char mava = valeurs[0];
+       //char fami = familles[0];
+       //ex : cartes.valeur = 'A';
+       //ex : cartes.famille = '\u2665';
+
+       return carte_tire;
+
+   }'
+
+private static carte tirage() 
 
 Cette fonction sert à genéré aléatoirement une carte que ce soit pour sa valeur ou pour sa famille.
 
