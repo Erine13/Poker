@@ -49,9 +49,9 @@ public static bool carteUnique(carte uneCarte, carte[] unJeu, int numero)
 
         if (i == numero) continue; //Numéro est le numéro de la carte parmi les 5 cartes de la main. Si on arrive à la position (numéro) de la carte qu'on vérifie, on passe à la suivante. Comparer la carte avec elle même donnerai un doublon.
         {
-            if (uneCarte.valeur == unJeu[i].valeur && uneCarte.famille == unJeu[i].famille)
+            if (uneCarte.valeur == unJeu[i].valeur && uneCarte.famille == unJeu[i].famille) 
             {
-                return false; //Si false la carte existe déjà
+                return false; //Si return false la carte existe déjà
             }
         
 
@@ -65,25 +65,25 @@ public static bool carteUnique(carte uneCarte, carte[] unJeu, int numero)
 
 ## 3 - Combinaisons
 
-Cette fonction (private static combinaison chercheCombinaison(carte[] unJeu)) permet 
-Les différentes combinaisons de mains sont : Rien, paire, double paire, brelan, quinte, full, couleur, carré et quinte flush.
-
+Cette fonction (private static combinaison chercheCombinaison(carte[] unJeu)) permet d’analyser les 5 cartes du jeu du joueur afin de déterminer la combinaison de poker obtenue (rien, paire, double paire, brelan, quinte, full, couleur, carré ou quinte flush) et de retourner cette combinaison.
+La suite du programme sera composé de 8 sous parties représentant les différentes combinaisons.
+Dans cette fonction, les boucles en dessous vont vérifier le nombre de similitudes entre les cartes de la main du joueur afin de remplir le tableau "similaire" :  ```  similaire = { 0, 0, 0, 0, 0 }  ```
+Le tableau "similaire" représente les 5 cartes du joueur. Si la carte est unique de part sa valeur, un 1 sera mis dans le tableau au positionement de la carte. S'il y a plusieurs fois la même valeur, le tableau s'incrémentera.
 
 
  ```C#
 public static combinaison cherche_combinaison(ref carte[] unJeu)
 {
-    int[] similaire = { 0, 0, 0, 0, 0 };  //Tableau similaire
-    //int[] couleur = { 0, 0, 0, 0, 0 };
+    int[]  similaire = { 0, 0, 0, 0, 0 };  //Tableau similaire
     int couleur = 0;
     combinaison retour = new combinaison(); //Creer une nouvelle instance de combinaison
-    retour = combinaison.RIEN;//"Variable" combinaison au nom de retour
+    retour = combinaison.RIEN; //"Variable" combinaison au nom de retour
     bool brelan = false;
     bool paire = false;
     
     bool quinte = false;
 
- for (int i = 0; i < unJeu.Length; i++) //Comparer ma main avec ma main, i prend la premiere carte puis la 2 ... Et j compare la 1ere avec ses 5 cartes.
+ for (int i = 0; i < unJeu.Length; i++) //Comparer ma main avec ma main, i prend la premiere carte puis la 2 ... Et j compare la 1ere avec les 5 cartes.
  {
      for (int j = 0; j < unJeu.Length; j++)
      {
@@ -91,17 +91,13 @@ public static combinaison cherche_combinaison(ref carte[] unJeu)
          {
              similaire[i] += 1;
 
-
          }
 
          if (unJeu[i].famille == unJeu[j].famille)
          {
              couleur += 1;
-
          }
-
      }
-
  }
 ```
 
