@@ -103,10 +103,12 @@ public static combinaison cherche_combinaison(ref carte[] unJeu)
 
 
 
-### 3.1 - 
+### 3.1 - Paire
+
+Combinaison PAIRE s'il y a un 2 dans le tableau similaire 
+Exemple : paire -> similaire = { 1, 2, 1, 2, 1 }
 
  ```C#
-//Paire
 if (similaire[s] == 2) //Si il y a un 2 dans similaire, faire +1 au compteur
 {
     compte = compte + 1;
@@ -115,6 +117,126 @@ if (similaire[s] == 2) //Si il y a un 2 dans similaire, faire +1 au compteur
 
 }
 ```
+Ainsi qu'un compteur qui à chaque fois que l’on a une paire (un 2 dans "similaire") on incrémente "compte", qui sera utile pour la double paire.
+
+### 3.2 - Double paire
+
+Pour double paire compte sera égale à 4 (Présence de 4 fois 2 dans similaire similaire = { 2, 2, 0, 2, 2 })
+Si "compte" divisé par 2 sera égale à 2, la condition DOUBLE_PAIRE sera remplie.
+
+ ```C#
+if (compte / 2 == 2)  
+{
+    retour = combinaison.DOUBLE_PAIRE;
+
+}
+ ```
+
+
+### 3.3 - Brelan
+
+S'il y a la présence d'un 3 dans "similaire", la condition BRELAN sera remplie.
+Exemple : brelan -> similaire = { 3, 1, 3, 3, 1 };
+
+
+ ```C#
+if (similaire[s] == 3) 
+{
+    retour = combinaison.BRELAN;
+    brelan = true;
+}
+ ```
+
+
+### 3.4 - Carre
+
+S'il y a la présence d'un 4 dans "similaire", la condition CARRE sera remplie.
+Exemple : carre -> similaire = { 4, 1, 4, 4, 4 };
+
+ ```C#
+if (similaire[s] == 4)
+{
+    retour = combinaison.CARRE;
+}
+ ```
+
+### 3.5 - Full
+
+La condition FULL est remplie lorsque la variable paire ET la variable brelan sont toutes les deux égales à true. 
+
+ ```C#
+if (paire && brelan)
+{
+    retour = combinaison.FULL;
+}
+ ```
+
+
+### 3.6 - Quinte
+
+La condition de la quinte consiste à vérifier si les cinq cartes de la main ont des valeurs différentes et si elles forment une suite de valeurs consécutives. Pour cela, le programme commence par vérifier qu’il n’y a aucun doublon dans la main, si la carte est unique, le programme fait + 1 au compteur.
+
+Ensuite, si le compteur est égale à 5 on verifie si la main correspond à une possibilité de quinte, ces suites possibles sont stocké dans un tableau segmenté en 4 plus petits tableaux. 
+Puis avec un deuxième compteur (compteur2), on regarde si les valeur de notre jeu correspondent aux valeurs présentent dans une des quintes stockées. Si c'est le cas + 1 au compteur2.
+Si les cinq cartes correspondent à l’une de ces suites et donc que compteur2 = 5, la combinaison Quinte est remplie.
+
+ ```C#
+int compteur1 = 0;
+int compteur2 = 0;
+for (int q = 0; q < similaire.Length; q++) //boucle qui regarde notre main
+{
+    if (similaire[q] == 1)//Si carte unique dans similaire = 1
+    {
+        compteur1 += 1;//Ajoute +1 au compteur
+    }
+}
+if (compteur1 == 5) //Si le compteur est = 5 alors on verifie si la main correspond à une possibilité de quinte
+{
+        for (int m = 0; m < 4; m++) //Vérifie les petits tableau en ligne dans le grand tableau quintes 
+        {
+            
+            for (int n = 0; n < 5; n++) //Parcours notre main de 5 cartes
+            {
+                for (int p = 0; p < 5; p++)//Vérifie les cartes en details dans chaque petit tableau
+                {
+
+                    if (unJeu[n].valeur == quintes[m, p]) //Si valeur de notre jeu correspond au valeur présente dans une des quinte stocké, + 1 au compteur2
+                    {
+                        compteur2 += 1;
+                        if (compteur2 == 5) //Si compteur 2 est = 5, cela correspond à une quinte
+                        {
+                           retour = combinaison.QUINTE;
+                           quinte = true;
+                        }
+                    }   
+                }
+            }   
+          compteur2 = 0;
+        }
+}
+ ```
+
+
+### 3.7 - Couleur
+
+ ```C#
+if (couleur == 25)
+{
+    retour = combinaison.COULEUR;
+}
+ ```
+
+
+
+### 3.8 - Quinte flush
+
+ ```C#
+ if (couleur == 25 && quinte)
+ {
+    retour = combinaison.QUINTE_FLUSH;
+ }
+ ```
+
 
 ### 4 - Echange de cartes 
 
