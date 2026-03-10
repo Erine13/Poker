@@ -280,9 +280,10 @@ Puis la boucle while permet de continuer le tirage tant que la carte n'est pas u
 
 ### 6 - Enregistrement des cartes 
 
+Cette fonction sert à enregistrer le nom du joueur avec  ```f.Write(nom) ``` et enregistrer les 5 cartes de la main.
 
  ```C#
- using (f = new BinaryWriter(new FileStream("scores.txt", FileMode.Append, FileAccess.Write))) //append -> ajouter
+ using (f = new BinaryWriter(new FileStream("scores.txt", FileMode.Create, FileAccess.Write))) //append -> ajouter à la suite   Create -> Ecrit à la place 
  {
      f.Write(nom);
      for (int e = 0; e < 5; e++)
@@ -290,23 +291,25 @@ Puis la boucle while permet de continuer le tirage tant que la carte n'est pas u
          f.Write(MonJeu[e].valeur);
          f.Write(MonJeu[e].famille);
      }
-
-
  }
 ```
 
 ### 7 - Affichage des cartes
 
+Cette fonction sert à récupérer / lire le nom du joueur avec  ```nom = f.ReadString() ``` et lire les 5 cartes de la main.
 
  ```C#
  using (BinaryReader f = new BinaryReader(new FileStream("scores.txt", FileMode.Open, FileAccess.Read))) 
  {
+     //récupération/lecture du nom du joueur dans le fichier score
      nom = f.ReadString();
-     for (int l = 0; l < 5; l++)
+     for (int l = 0; l < 5; l++) //Boucle pour parcourir les 5 cartes
      {
-         MonJeu[l].valeur = f.ReadChar();
+         MonJeu[l].valeur = f.ReadChar(); //Récupération de la valeur de la carte puis enregistre dans un jeu 
 
-         r = f.ReadChar();
+         //Récupération de la famille de la carte en la comparant avec les possibilités en dessous puis enregistre dans un jeu
+         r = f.ReadChar(); 
+         // Conversion du caractère en symbole de carte (coeur,...) correspondant
          if (Char.ToString(r)== "e")
          {
              MonJeu[l].famille = '\u2665';
@@ -323,7 +326,8 @@ Puis la boucle while permet de continuer le tirage tant que la carte n'est pas u
          {
              MonJeu[l].famille = '\u2663';
          }
- 
+         //ReadChar pour passer les éléments inutile (sinon donne un mauvais affichage des cartes avec d'autres caractère à la place des symboles)
+         r1 = f.ReadChars(3);
      }
 
  }
