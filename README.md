@@ -3,8 +3,7 @@
 ## Introduction 
 Ce projet a été donnée durant une première année de BTS SIO. Le contexte de ce projet est que la société HsH souhaite offrir un espace de détente proposant de petits jeux sur l'ordinateur mais certains jeux marchent mal. Nous avons du assurer la maintenance corrective d'un programme s’inspirant du jeu du Poker. 
 
-Le poker est un jeu !!! A revoir pour règle poker
-où un tirage aléatoire de 5 cartes est effectué. Il faudra s’assurer que chaque carte est unique, et ensuite, l’utilisateur aura la possibilité, soit de conserver son jeu, soit d’échanger aux plus quatre cartes, et obtenir ainsi une nouvelle main
+Le poker est un jeu où un tirage aléatoire de 5 cartes d'un jeu de 52 cartes est effectué. Le joueur devra avoir la plus haute combinaison possible avec sa main. Pour cela il aura la possibilité, soit de conserver son jeu, soit d’échanger aux plus quatre cartes, et obtenir ainsi une nouvelle main. Il pourra également enregistrer son nom avec son score.
 
 ## Fonctions à compléter ##
 
@@ -219,6 +218,9 @@ if (compteur1 == 5) //Si le compteur est = 5 alors on verifie si la main corresp
 
 ### 3.7 - Couleur
 
+Si le compteur "couleur" est égale à 25, la condition COULEUR sera remplie.
+Ce compteur est incrémenté quand dans la main, il y a des cartes de la même famille. 
+
  ```C#
 if (couleur == 25)
 {
@@ -230,6 +232,8 @@ if (couleur == 25)
 
 ### 3.8 - Quinte flush
 
+La condition QUINTE_FLUSH est remplie lorsque la variable quinte est égale à true et que le compteur couleur est égale à 25.
+
  ```C#
  if (couleur == 25 && quinte)
  {
@@ -240,7 +244,7 @@ if (couleur == 25)
 
 ### 4 - Echange de cartes 
 
-private static void echangeDeCartes(carte[] unJeu, int[] e)
+Cette fonction (private static void echangeDeCartes(carte[] unJeu, int[] e))  permet d’échanger certaines cartes de la main du joueur. Elle parcourt le tableau contenant les positions des cartes à remplacer et génère pour chacune d’elles une nouvelle carte aléatoire grâce à la fonction "tirage()" (expliquer au début du Readme). Puis changera les enregistrer dans le tableau.
 
  ```C#
  private static void echangeCarte(ref carte[] unJeu, ref int[] e)
@@ -254,7 +258,10 @@ private static void echangeDeCartes(carte[] unJeu, int[] e)
 
 ### 5 - Tirage du jeu
 
-private static void tirageDuJeu(carte[] unJeu)
+Cette fonction permet (private static void tirageDuJeu(carte[] unJeu)) de faire le tirage du jeu / de la main de 5 cartes aléatoires. 
+Pour chaque position des cartes en jeu, une carte est générée avec la fonction "tirage()". 
+Puis la boucle while permet de continuer le tirage tant que la carte n'est pas unique.
+
 
  ```C#
  private static void tirageDuJeu(ref carte[] unJeu)
@@ -262,11 +269,11 @@ private static void tirageDuJeu(carte[] unJeu)
      for (int t = 0; t < 5; t++) //Tirage d'un jeu de 5 cartes 
                                  //tirage de i jusqu'à 5
      {
-         do
+         do //faire
          {
-             unJeu[t] = tirage(); //UnJeu remplie le tableau tirage
+             unJeu[t] = tirage(); //UnJeu remplie par fonction tirage
          }
-         while (!carteUnique(unJeu[t], unJeu, t));
+         while (!carteUnique(unJeu[t], unJeu, t)); //Tant que la carte n'est pas unique continue le tirage pour éviter d'avoir des cartes en doubles
      }
  }
 ```
