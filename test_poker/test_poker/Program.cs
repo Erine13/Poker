@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Poker
@@ -76,9 +77,9 @@ namespace Poker
             carte_tire.famille = familles[f]; //La famille prend la famille tiré (noté f) dans le tableau familles
 
             //char mava = valeurs[0];
-            //char fami = familles[3];
-            //cartes.valeur = 'D';
-            //cartes.famille = '\u2665';
+            //char fami = familles[0];
+            //ex : cartes.valeur = 'A';
+            //ex : cartes.famille = '\u2665';
 
             return carte_tire;
 
@@ -92,18 +93,18 @@ namespace Poker
             for (int i = 0; i < 5; i++) //boucle de 5
             {
 
-                if (i == numero) continue;
+                if (i == numero) continue;//Si on arrive à la position (numéro) de la carte qu'on vérifie, on passe à la suivante. Comparer la carte avec elle même donnerai un doublon.
                 {
                     if (uneCarte.valeur == unJeu[i].valeur && uneCarte.famille == unJeu[i].famille)
                     {
-                        return false; //Si false la carte est unique 
+                        return false; //Si false la carte existe déjà
                     }
                 
 
                 }
                        
             }
-            return true; //Si true la carte existe déjà
+            return true; //Si true la carte est unique 
         }
 
         // Calcule et retourne la COMBINAISON (paire, double-paire... , quinte-flush)
@@ -205,8 +206,8 @@ namespace Poker
                                 for (int p = 0; p < 5; p++)//Vérifie les cartes en details dans chaque petit tableau
                                 {
 
-                                    if (unJeu[n].valeur == quintes[m, p])
-                                    {
+                                    if (unJeu[n].valeur == quintes[m, p]) //Si valeur de notre jeu correspond au valeur présente dans une des quintes stocké, + 1 au compteur2
+                            {
                                         compteur2 += 1;
                                         if (compteur2 == 5) //Si compteur 2 est = 5, cela correspond à une quinte
                                         {
@@ -263,14 +264,14 @@ namespace Poker
         // Paramètre : le tableau de 5 cartes à remplir
         private static void tirageDuJeu(ref carte[] unJeu)
         {
-            for (int i = 0; i < 5; i++) //Tirage d'un jeu de 5 cartes 
+            for (int t = 0; t < 5; t++) //Tirage d'un jeu de 5 cartes 
                                         //tirage de i jusqu'à 5
             {
                 do
                 {
-                    unJeu[i] = tirage(); //UnJeu remplie le tableau tirage
+                    unJeu[t] = tirage(); //UnJeu remplie le tableau tirage
                 }
-                while (!carteUnique(unJeu[i], unJeu, i));
+                while (!carteUnique(unJeu[t], unJeu, t));
             }
         }
         // Affiche à l'écran une carte {valeur;famille} en fournisant la colonne de départ
@@ -321,6 +322,7 @@ namespace Poker
             }
 
         }
+
 
         //--------------------
         // Fonction PRINCIPALE
@@ -434,12 +436,18 @@ namespace Poker
                         const string fileName = "scores.txt";
                         Console.WriteLine("Vous pouvez saisir votre nom (ou pseudo) : ");
                         nom = Console.ReadLine();
-                        //BinaryWriter f;
+                        //BinaryWriter f; Variable fichier
                         //Ouverture du fichier en AJOUT
                         //Si le fichier EXISTE : ajout à la fin sinon création du fichier
-                        using (f = new BinaryWriter(new FileStream("scores.txt", FileMode.Append, FileAccess.Write))) //append -> ajouter
+                        using (f = new BinaryWriter(new FileStream("scores.txt", FileMode.Create, FileAccess.Write))) //append -> ajouter à la suite   Create -> Ecrit à la place 
                         {
                             f.Write(nom);
+                            for (int e = 0; e < 5; e++)
+                            {
+                                f.Write(MonJeu[e].valeur);
+                                f.Write(MonJeu[e].famille);
+                            }
+
 
                         }
 
@@ -452,23 +460,52 @@ namespace Poker
                     char[] délimiteurs = { ';' }; //Caractères délimiteurs, couper chaine de caractère
                     carte UneCarte; //Une carte
                     string nom; //Nom du joueur
+                    Array r1; // Array = un tableau
+                    char r;
                     if (File.Exists("scores.txt"))
                     {
                         //Ouverture en LECTURE
                         using (BinaryReader f = new BinaryReader(new FileStream("scores.txt", FileMode.Open, FileAccess.Read))) 
                         {
-                            string line = f.ReadString();
-                            articles = line;
-                            string[] partie = articles.Split(délimiteurs);
-                            foreach (string parties in partie)
+                            //récupération/lecture du nom du joueur dans le fichier score
+                            nom = f.ReadString();
+                            for (int l = 0; l < 5; l++) //Boucle pour parcourir les 5 cartes
                             {
-                                Console.WriteLine(parties);
+                                MonJeu[l].valeur = f.ReadChar(); //Récupération de la valeur de la carte 
+
+                                //Récupération de la famille de la carte en la comparant avec les possibilités en dessous 
+                                r = f.ReadChar();
+
+                                // Conversion du caractère en symbole de carte (coeur,...) correspondant
+                                if (Char.ToString(r)== "e")
+                                {
+                                    MonJeu[l].famille = '\u2665';
+                                }
+                                else if (Char.ToString(r) == "f")
+                                {
+                                    MonJeu[l].famille = '\u2666';
+                                }
+                                else if (Char.ToString(r) == "c")
+                                {
+                                    MonJeu[l].famille = '\u2660';
+                                }
+                                else 
+                                {
+                                    MonJeu[l].famille = '\u2663';
+                                }
+
+                                //ReadChar pour passer les éléments inutile présent dans le fichier score (sinon donne un mauvais affichage des cartes avec d'autres caractère à la place des symboles)
+                                r1 = f.ReadChars(3);
+                               
                             }
+                            
+                            
 
 
                         }
                         
-                        //Console.WriteLine("Nom : " + nom);
+                        Console.WriteLine("Nom : " + nom);
+                        affichageCarte(ref MonJeu[0]); //ref fait référence à mon jeu du dessus
                         Console.ReadKey();
                     }
                 }
