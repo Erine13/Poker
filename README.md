@@ -299,7 +299,7 @@ Cette fonction sert à enregistrer le nom du joueur avec  ```f.Write(nom) ``` et
 Cette fonction sert à récupérer / lire le nom du joueur avec  ```nom = f.ReadString() ``` et lire les 5 cartes de la main.
 
  ```C#
- using (BinaryReader f = new BinaryReader(new FileStream("scores.txt", FileMode.Open, FileAccess.Read))) 
+ using (BinaryReader f = new BinaryReader(new FileStream("scores.txt", FileMode.Open, FileAccess.Read))) //Ouverture fichier score 
  {
      //récupération/lecture du nom du joueur dans le fichier score
      nom = f.ReadString();
