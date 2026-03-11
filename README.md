@@ -244,7 +244,7 @@ La condition QUINTE_FLUSH est remplie lorsque la variable quinte est égale à t
 
 ### 4 - Echange de cartes 
 
-Cette fonction (private static void echangeDeCartes(carte[] unJeu, int[] e))  permet d’échanger certaines cartes de la main du joueur. Elle parcourt le tableau contenant les positions des cartes à remplacer et génère pour chacune d’elles une nouvelle carte aléatoire grâce à la fonction "tirage()" (expliquer au début du Readme). Puis changera les enregistrer dans le tableau.
+Cette fonction (private static void echangeDeCartes(carte[] unJeu, int[] e))  permet d’échanger certaines cartes de la main du joueur. Elle parcourt le tableau contenant les positions des cartes à remplacer et génère pour chacune d’elles une nouvelle carte aléatoire grâce à la fonction "tirage()" (expliquer au début du Readme). Puis changera les cartes enregistrer dans le tableau.
 
  ```C#
  private static void echangeCarte(ref carte[] unJeu, ref int[] e)
