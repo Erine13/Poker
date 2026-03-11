@@ -305,9 +305,9 @@ Cette fonction sert à récupérer / lire le nom du joueur avec  ```nom = f.Read
      nom = f.ReadString();
      for (int l = 0; l < 5; l++) //Boucle pour parcourir les 5 cartes
      {
-         MonJeu[l].valeur = f.ReadChar(); //Récupération de la valeur de la carte puis enregistre dans un jeu 
+         MonJeu[l].valeur = f.ReadChar(); //Récupération de la valeur de la carte
 
-         //Récupération de la famille de la carte en la comparant avec les possibilités en dessous puis enregistre dans un jeu
+         //Récupération de la famille de la carte en la comparant avec les possibilités en dessous
          r = f.ReadChar(); 
          // Conversion du caractère en symbole de carte (coeur,...) correspondant
          if (Char.ToString(r)== "e")
