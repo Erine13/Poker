@@ -191,7 +191,7 @@ for (int q = 0; q < similaire.Length; q++) //boucle qui regarde notre main
 }
 if (compteur1 == 5) //Si le compteur est = 5 alors on verifie si la main correspond à une possibilité de quinte
 {
-        for (int m = 0; m < 4; m++) //Vérifie les petits tableau en ligne dans le grand tableau quintes 
+        for (int m = 0; m < 4; m++) //Vérifie les petits tableau en ligne dans le grand tableau quinte 
         {
             
             for (int n = 0; n < 5; n++) //Parcours notre main de 5 cartes
@@ -199,7 +199,7 @@ if (compteur1 == 5) //Si le compteur est = 5 alors on verifie si la main corresp
                 for (int p = 0; p < 5; p++)//Vérifie les cartes en details dans chaque petit tableau
                 {
 
-                    if (unJeu[n].valeur == quintes[m, p]) //Si valeur de notre jeu correspond au valeur présente dans une des quinte stocké, + 1 au compteur2
+                    if (unJeu[n].valeur == quintes[m, p]) //Si valeur de notre jeu correspond au valeur présente dans une des quintes stocké, + 1 au compteur2
                     {
                         compteur2 += 1;
                         if (compteur2 == 5) //Si compteur 2 est = 5, cela correspond à une quinte
@@ -326,7 +326,7 @@ Cette fonction sert à récupérer / lire le nom du joueur avec  ```nom = f.Read
          {
              MonJeu[l].famille = '\u2663';
          }
-         //ReadChar pour passer les éléments inutile (sinon donne un mauvais affichage des cartes avec d'autres caractère à la place des symboles)
+         //ReadChar pour passer les éléments inutile présent dans le fichier score (sinon donne un mauvais affichage des cartes avec d'autres caractère à la place des symboles)
          r1 = f.ReadChars(3);
      }
 
