@@ -278,7 +278,7 @@ Puis la boucle while permet de continuer le tirage tant que la carte n'est pas u
  }
 ```
 
-### 6 - Enregistrement des cartes 
+### 6 - Enregistrement du résultat 
 
 Cette fonction sert à enregistrer le nom du joueur avec  ```f.Write(nom) ``` et enregistrer les 5 cartes de la main.
 
@@ -294,7 +294,7 @@ Cette fonction sert à enregistrer le nom du joueur avec  ```f.Write(nom) ``` et
  }
 ```
 
-### 7 - Affichage des cartes
+### 7 - Affichage du résultat
 
 Cette fonction sert à récupérer / lire le nom du joueur avec  ```nom = f.ReadString() ``` et lire les 5 cartes de la main.
 
