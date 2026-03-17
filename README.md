@@ -120,7 +120,7 @@ Ainsi qu'un compteur qui à chaque fois que l’on a une paire (un 2 dans "simil
 
 ### 3.2 - Double paire
 
-Pour double paire compte sera égale à 4 (Présence de 4 fois 2 dans similaire similaire = { 2, 2, 0, 2, 2 })
+Pour double paire compte sera égale à 4 (Présence de 4 fois 2 dans similaire similaire = { 2, 2, 1, 2, 2 })
 Si "compte" divisé par 2 sera égale à 2, la condition DOUBLE_PAIRE sera remplie.
 
  ```C#
